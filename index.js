@@ -82,12 +82,19 @@ let fonts = {
 		v: '\u1d65',
 		x: '\u2093',
 		y: '\u1d67'
+	},
+	"fractur": {
+		e: '\u{1d58a}',
+		l: '\u{1d591}',
+		o: '\u{1d594}',
+		H: '\u{1d573}'
 	}
 };
 
 
 
-function changeToFont(oldText, font = {}) {
+function asFont(oldText, font) {
+	font = fonts[font] || {};
 	let newText = "";
 	for (let char of oldText) {
 		newText += font[char] || char;
@@ -97,5 +104,5 @@ function changeToFont(oldText, font = {}) {
 
 
 function setFont(font) {
-	textBox.value = changeToFont(textBox.value, fonts[font]);
+	textBox.value = asFont(textBox.value, font);
 }
